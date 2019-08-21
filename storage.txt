@@ -1,0 +1,28 @@
+host="database-1.ckre6z6zws8s.us-west-2.rds.amazonaws.com"
+user="dev"
+password="r2awB2bRtJ2hpjR"
+database="web_address_lookup"
+port=3306
+
+I have a list of URLs I need fetched via python. The script you build will work like this:
+
+1. Create the database and two tables (in MySQL) via the attached script.
+2. Create a python script that takes the file path of the attached CSV and loads the CSV into web_address_lookup.address_input.
+3. Create a python script that selects rows from the address_input table WHERE needs_lookup = 1.
+3. Iterate through each address, and log back to the address_output table: 
+
+a)the address_id, 
+b)log the http response code to the web_address_lookup.address_output.http_response_code, 
+c)if the response is a redirect (i.e, http 3xx) log the final URL to the web_address_lookup.address_output.redirected_to_url column, 
+d)log the HTML returned to web_address_lookup.address_output.html column 
+    (discard images and such; this column is a text column on purpose, not a blob -- so images should not be saved), 
+and 
+e)log the time the lookup was performed to web_address_lookup.address_output.lookup_timestamp.
+
+4. UPDATE web_address_lookup.address_input.needs_lookup to zero.
+
+As part of the acceptance criteria, your script will utilize appropriate batching. For example, you should probably fetch 1,000 (or a configurable number...) of rows from address_input, iterate through them, write the results for the entire batch to address_output, update the address_input.needs_lookup column for the entire batch, and then take the next 1,000 records from the address_input table. 
+
+You will deliver to me: the python code that runs the process described above and the MySQL database proving completion of the tasks.
+
+Please note, the sample CSV includes 91,663 rows in it. When I run the process, I will add additional rows to it at various times. As such, the CSV import part of the code needs to be included in the final script (if you use pandas...its probably 3 lines of code or something).

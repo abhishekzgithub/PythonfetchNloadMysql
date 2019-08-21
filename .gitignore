@@ -1,0 +1,15 @@
+*.csv
+*.log
+*.vscode
+*.xlsx
+*.ipynb
+\__pycache__
+DCRDataBaseUtility.py
+backup
+data
+*.pyc
+\.env
+*.env
+.ipynb_checkpoints
+scraped_data - Copy
+!unique_type_columns.csv

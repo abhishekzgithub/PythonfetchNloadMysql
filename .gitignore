@@ -8,7 +8,7 @@ DCRDataBaseUtility.py
 backup
 data
 *.pyc
-\.env
+.env
 *.env
 .ipynb_checkpoints
 scraped_data - Copy
